@@ -1,0 +1,1383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>hikari.api.config API documentation</title>
+<meta name="description" content="Core interface for Hikari's configuration dataclasses.">
+<meta property="og:title" content="hikari.api.config module list">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://hikari-py.dev/logo.png">
+<meta property="og:description" content="A Discord Bot framework for modern Python and asyncio built on good intentions">
+<meta property="theme-color" content="#ff029a">
+<link rel="shortcut icon" type="image/png" href="../../logo.png">
+<!--<script async src="https://cse.google.com/cse.js?cx=017837193012385208679:pey8ky8gdqw"></script>
+<style>.gsc-control-cse {padding:0 !important;margin-top:1em}</style>-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css" rel="stylesheet">
+<style>
+img#logo {
+border-radius: 15px;
+width: 30px;
+height: 30px;
+margin-right: 0.5em;
+text-indent: 100%;
+white-space: nowrap;
+overflow: hidden;
+}
+small.smaller {
+font-size: 0.50em;
+}
+html {
+height: 100%;
+scroll-behavior: smooth;
+scrollbar-color: #202324 #454a4d;
+}
+body {
+background-color: #181A1B;
+color: #C9C5C0;
+height: fit-content;
+}
+h1 {
+margin-top: 3rem;
+}
+h2 {
+margin-top: 1.75rem;
+margin-bottom: 1em;
+}
+h3 {
+margin-top: 1.25rem;
+}
+h4 {
+margin-top: 1rem;
+}
+.nav-section {
+margin-top: 2em;
+}
+.monospaced {
+font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+a.sidebar-nav-pill,
+a.sidebar-nav-pill:active,
+a.sidebar-nav-pill:hover {
+color: #BDB7AF;
+}
+.module-source > details > pre {
+display: block;
+overflow-x: auto;
+overflow-y: auto;
+max-height: 600px;
+font-size: 0.8em;
+}
+a {
+color: #DE4F91;
+}
+a:hover {
+color: #64B1F2;
+}
+.container > li {
+margin-left: 1em;
+margin-top: 2.5em;
+}
+.jumbotron {
+background-color: #232627;
+}
+.breadcrumb-item.inactive > a {
+color: #d264d0 !important;
+}
+.breadcrumb-item.active > a {
+color: #de4f91 !important;
+}
+.breadcrumb-item+.breadcrumb-item::before {
+content: ".";
+}
+.module-breadcrumb {
+padding-left: 0 !important;
+background-color: #232627;
+}
+ul.nested {
+margin-left: 1em;
+}
+h2#parameters::after {
+margin-left: 2em;
+}
+.anchor:target {
+background-color: var(--dark);
+}
+@media screen and (max-width: 990px) {
+.anchor:target {
+margin-left: -2em;
+padding-left: 2em;
+}
+}
+@media screen and (min-width: 990px) {
+.anchor:target {
+border-radius: 0.5em; !important
+margin-right: -2em;
+padding-right: 2em;
+margin-top: -1em;
+padding-top: 1em;
+}
+}
+dt {
+margin-left: 2em;
+}
+dd {
+margin-left: 4em;
+}
+dl.no-nest > dt {
+margin-left: 0em;
+}
+dl.no-nest > dd {
+margin-left: 2em;
+}
+dl.root {
+margin-bottom: 2em;
+}
+.definition {
+display: block;
+margin-bottom: 8em !important;
+}
+.definition .row {
+display: block;
+margin-bottom: 4em !important;
+}
+.definition h2 {
+font-size: 1em;
+font-weight: bolder;
+}
+.sep {
+height: 2em;
+}
+code {
+color: #DB61D9;
+}
+code .active {
+color: #e83e8c;
+}
+code a {
+color: #E94A93;
+}
+a.dotted:hover, abbr:hover {
+text-decoration: underline #9E9689 dotted !important;
+}
+a.dotted, abbr {
+text-decoration: none !important;
+}
+.gsc-search-box, .gsc-search-box-tools, .gsc-control-cse {
+background: none !important;
+border: none !important;
+}
+.gsc-search-button-v2, .gsc-search-button-v2:hover, .gsc-search-button-v2:focus {
+color: var(--success) !important;
+border-color: var(--success) !important;
+background: none !important;
+padding: 6px 32px !important;
+font-size: inherit !important;
+}
+.gsc-search-button-v2 > svg {
+fill: var(--success) !important;
+}
+.gsc-input-box {
+border-radius: 3px;
+}
+.gsc-control-cse {
+width: 300px !important;
+margin-top: 0 !important;
+}
+.gsc-control-cse .gsc-control-cse-en {
+margin-top: 0 !important;
+}
+.bg-dark {
+background-color: #2C2F31 !important;
+}
+.text-muted {
+color: #9E9689 !important;
+}
+.alert-primary {
+color: #7CC3FF;
+background-color: #262A2B;
+border-color: #003B7B;
+}
+.alert-secondary {
+color: #C2BCB4;
+background-color: #282B2C;
+border-color: #3B4042;
+}
+.alert-success {
+color: #99E6AB;
+background-color: #1A3E29;
+border-color: #255A32;
+}
+.alert-info {
+color: #8EE3F1;
+background-color: #143B43;
+border-color: #1E5961;
+}
+.alert-warning {
+color: #FBD770;
+background-color: #513E00;
+border-color: #7B5C00;
+}
+.alert-danger {
+color: rgb(225, 134, 143);
+background-color: rgb(67, 12, 17);
+border-color: rgb(104, 18, 27);
+}
+mark {
+background-color: #333333;
+border-radius: 0.1em;
+color: #DB61D9;
+}
+</style>
+<script async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML'></script>
+</head>
+<body>
+<nav id="main-nav" class="navbar navbar-dark navbar-expand-lg bg-dark">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"/>
+</button>
+<a class="navbar-brand" href="https://github.com/hikari-py/hikari"><img class="d-inline-block align-top" src="../../logo.png" id="logo" alt="hikari logo" loading="lazy"/>Hikari <small class="smaller">2.0.0.dev109</small></a>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link active" href="../../hikari/index.html">Documentation</a></li>
+<li class="nav-item"><a class="nav-link" href="https://github.com/hikari-py/hikari">GitHub</a></li>
+<li class="nav-item"><a class="nav-link" href="https://pypi.org/project/hikari">PyPI</a></li>
+<li class="nav-item"><a class="nav-link" href="https://discord.gg/Jx4cNGG">Discord Server</a></li>
+</ul>
+<form class="form-inline" action="../../hikari/search.html">
+<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="lunr-search" name="q"/>
+<button class="btn btn-outline-success my-2 my-sm-0" type="submit">&gt;</button>
+</form>
+</div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+<div class="container">
+<h1 class="display-4"><code>
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb module-breadcrumb">
+<li class="breadcrumb-item inactive"><a title="hikari -- A sane Python framework for writing modern Discord bots …" href="../index.html"
+>hikari</a></li>
+<li class="breadcrumb-item inactive"><a title="hikari.api -- Interfaces for components that make up Hikari applications …" href="index.html"
+>api</a></li>
+<li class="breadcrumb-item active"><a href="#">config</a></li>
+</ol>
+</nav>
+</code></h1>
+<p class="lead"><p>Core interface for Hikari's configuration dataclasses.</p></p>
+</div>
+</div>
+<div class="container-xl">
+<div class="row">
+<div class="d-md-none d-lg-block col-lg-5 col-xl-4">
+<!--<nav class="nav" id="content-nav">-->
+<h3>This module</h3>
+<ul class="list-unstyled text-truncate">
+<li class="monospaced text-truncate">
+<small class='text-muted'><em><abbr title='A Python enum type that supports combination using bitwise flags.'>enum flag</abbr></em></small> <a title="CacheComponents -- Flags to control the cache components." href="#hikari.api.config.CacheComponents"
+>CacheComponents</a>
+<ul class="list-unstyled nested text-truncate">
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="ALL -- Fully enables the cache." href="#hikari.api.config.CacheComponents.ALL"
+>ALL</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="DM_CHANNEL_IDS -- Enables the DM channel IDs cache." href="#hikari.api.config.CacheComponents.DM_CHANNEL_IDS"
+>DM_CHANNEL_IDS</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="EMOJIS -- Enables the emojis cache." href="#hikari.api.config.CacheComponents.EMOJIS"
+>EMOJIS</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="GUILDS -- Enables the guild cache." href="#hikari.api.config.CacheComponents.GUILDS"
+>GUILDS</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="GUILD_CHANNELS -- Enables the guild channels cache." href="#hikari.api.config.CacheComponents.GUILD_CHANNELS"
+>GUILD_CHANNELS</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="INVITES -- Enables the invites cache." href="#hikari.api.config.CacheComponents.INVITES"
+>INVITES</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="ME -- Enables the me cache." href="#hikari.api.config.CacheComponents.ME"
+>ME</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="MEMBERS -- Enables the members cache." href="#hikari.api.config.CacheComponents.MEMBERS"
+>MEMBERS</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="MESSAGES -- Enables the messages cache." href="#hikari.api.config.CacheComponents.MESSAGES"
+>MESSAGES</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="NONE -- Disables the cache." href="#hikari.api.config.CacheComponents.NONE"
+>NONE</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="PRESENCES -- Enables the presences cache." href="#hikari.api.config.CacheComponents.PRESENCES"
+>PRESENCES</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="ROLES -- Enables the roles cache." href="#hikari.api.config.CacheComponents.ROLES"
+>ROLES</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="VOICE_STATES -- Enables the voice states cache." href="#hikari.api.config.CacheComponents.VOICE_STATES"
+>VOICE_STATES</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="all -- Check if all of the given flags are part of this value …" href="../internal/enums.html#hikari.internal.enums.Flag.all"
+>all</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="any -- Check if any of the given flags are part of this value …" href="../internal/enums.html#hikari.internal.enums.Flag.any"
+>any</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="difference -- Perform a set difference with the other set …" href="../internal/enums.html#hikari.internal.enums.Flag.difference"
+>difference</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="intersection -- Return a combination of flags that are set for both given values …" href="../internal/enums.html#hikari.internal.enums.Flag.intersection"
+>intersection</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="invert -- Return a set of all flags not in the current set." href="../internal/enums.html#hikari.internal.enums.Flag.invert"
+>invert</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="is_disjoint -- Return whether two sets have a intersection or not …" href="../internal/enums.html#hikari.internal.enums.Flag.is_disjoint"
+>is_disjoint</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="is_subset -- Return whether another set contains this set or not …" href="../internal/enums.html#hikari.internal.enums.Flag.is_subset"
+>is_subset</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="is_superset -- Return whether this set contains another set or not." href="../internal/enums.html#hikari.internal.enums.Flag.is_superset"
+>is_superset</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="isdisjoint -- Return whether two sets have a intersection or not …" href="../internal/enums.html#hikari.internal.enums.Flag.is_disjoint"
+>isdisjoint</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="issubset -- Return whether another set contains this set or not …" href="../internal/enums.html#hikari.internal.enums.Flag.is_subset"
+>issubset</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="issuperset -- Return whether this set contains another set or not." href="../internal/enums.html#hikari.internal.enums.Flag.is_superset"
+>issuperset</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="name -- Return the name of the flag combination as a `builtins.str`." href="../internal/enums.html#hikari.internal.enums.Flag.name"
+>name</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="none -- Check if none of the given flags are part of this value …" href="../internal/enums.html#hikari.internal.enums.Flag.none"
+>none</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="split -- Return a list of all defined atomic values for this flag …" href="../internal/enums.html#hikari.internal.enums.Flag.split"
+>split</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="symmetric_difference -- Return a set with the symmetric differences of two flag sets …" href="../internal/enums.html#hikari.internal.enums.Flag.symmetric_difference"
+>symmetric_difference</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="symmetricdifference -- Return a set with the symmetric differences of two flag sets …" href="../internal/enums.html#hikari.internal.enums.Flag.symmetric_difference"
+>symmetricdifference</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A standard Python function.'>def</abbr></em></small> <a title="union -- Return a combination of all flags in this set and the other set …" href="../internal/enums.html#hikari.internal.enums.Flag.union"
+>union</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="value -- Return the `builtins.int` value of the flag." href="../internal/enums.html#hikari.internal.enums.Flag.value"
+>value</a>
+</li>
+<br />
+</ul>
+</li>
+<li class="monospaced text-truncate">
+<small class='text-muted'><em><abbr title='A standard Python type.'>class</abbr></em></small> <a title="CacheSettings -- Settings to control the cache." href="#hikari.api.config.CacheSettings"
+>CacheSettings</a>
+<ul class="list-unstyled nested text-truncate">
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="components -- Cache components to use." href="#hikari.api.config.CacheSettings.components"
+>components</a>
+</li>
+<br />
+</ul>
+</li>
+<li class="monospaced text-truncate">
+<small class='text-muted'><em><abbr title='A standard Python type.'>class</abbr></em></small> <a title="HTTPSettings -- Settings to control HTTP clients." href="#hikari.api.config.HTTPSettings"
+>HTTPSettings</a>
+<ul class="list-unstyled nested text-truncate">
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="max_redirects -- Behavior for handling redirect HTTP responses …" href="#hikari.api.config.HTTPSettings.max_redirects"
+>max_redirects</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="ssl -- SSL context to use …" href="#hikari.api.config.HTTPSettings.ssl"
+>ssl</a>
+</li>
+<br />
+</ul>
+</li>
+<li class="monospaced text-truncate">
+<small class='text-muted'><em><abbr title='A standard Python type.'>class</abbr></em></small> <a title="ProxySettings -- Settings for configuring an HTTP-based proxy." href="#hikari.api.config.ProxySettings"
+>ProxySettings</a>
+<ul class="list-unstyled nested text-truncate">
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="trust_env -- Toggle whether to look for a `netrc` file or environment variables …" href="#hikari.api.config.ProxySettings.trust_env"
+>trust_env</a>
+</li>
+<li class="text-truncate monospaced">
+<small class='text-muted'><em><abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="url -- Proxy URL to use …" href="#hikari.api.config.ProxySettings.url"
+>url</a>
+</li>
+<br />
+</ul>
+</li>
+</ul>
+<!--</nav>-->
+</div>
+<div class="col-xs-12 col-lg-7 col-xl-8">
+<div class="row">
+<div class="col module-source">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+<br />
+<a href="https://github.com/hikari-py/hikari/blob/e8d7692c5e2e8453c8f18dea9e819a807d5f9d5f/hikari/api/config.py#L1-L193" class="git-link dotted">Browse git</a>
+</summary>
+<pre><code class="python"># -*- coding: utf-8 -*-
+# cython: language_level=3
+# Copyright (c) 2020 Nekokatt
+# Copyright (c) 2021-present davfsa
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the &#34;Software&#34;), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED &#34;AS IS&#34;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+&#34;&#34;&#34;Core interface for Hikari&#39;s configuration dataclasses.&#34;&#34;&#34;
+from __future__ import annotations
+
+__all__: typing.Sequence[str] = (&#34;CacheComponents&#34;, &#34;CacheSettings&#34;, &#34;HTTPSettings&#34;, &#34;ProxySettings&#34;)
+
+import abc
+import typing
+
+from hikari.internal import enums
+
+if typing.TYPE_CHECKING:
+    import ssl as ssl_
+
+
+class CacheComponents(enums.Flag):
+    &#34;&#34;&#34;Flags to control the cache components.&#34;&#34;&#34;
+
+    NONE = 0
+    &#34;&#34;&#34;Disables the cache.&#34;&#34;&#34;
+
+    GUILDS = 1 &lt;&lt; 0
+    &#34;&#34;&#34;Enables the guild cache.&#34;&#34;&#34;
+
+    GUILD_CHANNELS = 1 &lt;&lt; 1
+    &#34;&#34;&#34;Enables the guild channels cache.&#34;&#34;&#34;
+
+    MEMBERS = 1 &lt;&lt; 2
+    &#34;&#34;&#34;Enables the members cache.&#34;&#34;&#34;
+
+    ROLES = 1 &lt;&lt; 3
+    &#34;&#34;&#34;Enables the roles cache.&#34;&#34;&#34;
+
+    INVITES = 1 &lt;&lt; 4
+    &#34;&#34;&#34;Enables the invites cache.&#34;&#34;&#34;
+
+    EMOJIS = 1 &lt;&lt; 5
+    &#34;&#34;&#34;Enables the emojis cache.&#34;&#34;&#34;
+
+    PRESENCES = 1 &lt;&lt; 6
+    &#34;&#34;&#34;Enables the presences cache.&#34;&#34;&#34;
+
+    VOICE_STATES = 1 &lt;&lt; 7
+    &#34;&#34;&#34;Enables the voice states cache.&#34;&#34;&#34;
+
+    MESSAGES = 1 &lt;&lt; 8
+    &#34;&#34;&#34;Enables the messages cache.&#34;&#34;&#34;
+
+    ME = 1 &lt;&lt; 9
+    &#34;&#34;&#34;Enables the me cache.&#34;&#34;&#34;
+
+    DM_CHANNEL_IDS = 1 &lt;&lt; 10
+    &#34;&#34;&#34;Enables the DM channel IDs cache.&#34;&#34;&#34;
+
+    ALL = (
+        GUILDS
+        | GUILD_CHANNELS
+        | MEMBERS
+        | ROLES
+        | INVITES
+        | EMOJIS
+        | PRESENCES
+        | VOICE_STATES
+        | MESSAGES
+        | ME
+        | DM_CHANNEL_IDS
+    )
+    &#34;&#34;&#34;Fully enables the cache.&#34;&#34;&#34;
+
+
+class ProxySettings(abc.ABC):
+    &#34;&#34;&#34;Settings for configuring an HTTP-based proxy.&#34;&#34;&#34;
+
+    __slots__: typing.Sequence[str] = ()
+
+    @property
+    @abc.abstractmethod
+    def url(self) -&gt; typing.Union[None, str]:
+        &#34;&#34;&#34;Proxy URL to use.
+
+        If this is `builtins.None` then no explicit proxy is being used.
+        &#34;&#34;&#34;
+
+    @property
+    @abc.abstractmethod
+    def trust_env(self) -&gt; bool:
+        &#34;&#34;&#34;Toggle whether to look for a `netrc` file or environment variables.
+
+        If `builtins.True`, and no `url` is given on this object, then
+        `HTTP_PROXY` and `HTTPS_PROXY` will be used from the environment
+        variables, or a `netrc` file may be read to determine credentials.
+
+        If `builtins.False`, then this information is instead ignored.
+
+        !!! note
+            For more details of using `netrc`, visit:
+            https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html
+        &#34;&#34;&#34;
+
+
+class HTTPSettings(abc.ABC):
+    &#34;&#34;&#34;Settings to control HTTP clients.&#34;&#34;&#34;
+
+    __slots__: typing.Sequence[str] = ()
+
+    @property
+    @abc.abstractmethod
+    def max_redirects(self) -&gt; typing.Optional[int]:
+        &#34;&#34;&#34;Behavior for handling redirect HTTP responses.
+
+        If a `builtins.int`, allow following redirects from `3xx` HTTP responses
+        for up to this many redirects. Exceeding this value will raise an
+        exception.
+
+        If `builtins.None`, then disallow any redirects.
+
+        The default is to disallow this behavior for security reasons.
+
+        Generally, it is safer to keep this disabled. You may find a case in the
+        future where you need to enable this if Discord change their URL without
+        warning.
+
+        !!! note
+            This will only apply to the REST API. WebSockets remain unaffected
+            by any value set here.
+        &#34;&#34;&#34;
+
+    @property
+    @abc.abstractmethod
+    def ssl(self) -&gt; ssl_.SSLContext:
+        &#34;&#34;&#34;SSL context to use.
+
+        This may be __assigned__ a `builtins.bool` or an `ssl.SSLContext` object.
+
+        If assigned to `builtins.True`, a default SSL context is generated by
+        this class that will enforce SSL verification. This is then stored in
+        this field.
+
+        If `builtins.False`, then a default SSL context is generated by this
+        class that will **NOT** enforce SSL verification. This is then stored
+        in this field.
+
+        If an instance of `ssl.SSLContext`, then this context will be used.
+
+        !!! warning
+            Setting a custom value here may have security implications, or
+            may result in the application being unable to connect to Discord
+            at all.
+
+        !!! warning
+            Disabling SSL verification is almost always unadvised. This
+            is because your application will no longer check whether you are
+            connecting to Discord, or to some third party spoof designed
+            to steal personal credentials such as your application token.
+
+            There may be cases where SSL certificates do not get updated,
+            and in this case, you may find that disabling this explicitly
+            allows you to work around any issues that are occurring, but
+            you should immediately seek a better solution where possible
+            if any form of personal security is in your interest.
+        &#34;&#34;&#34;
+
+
+class CacheSettings(abc.ABC):
+    &#34;&#34;&#34;Settings to control the cache.&#34;&#34;&#34;
+
+    __slots__: typing.Sequence[str] = ()
+
+    @property
+    @abc.abstractmethod
+    def components(self) -&gt; CacheComponents:
+        &#34;&#34;&#34;Cache components to use.&#34;&#34;&#34;</code></pre>
+</details>
+</div>
+</div>
+<h2 id="class-heading">Classes</h2>
+<section class="definition">
+<dl class="no-nest root">
+<div id="hikari.api.config.CacheComponents" class="anchor">
+<dt>
+<h4><small class='text-muted'><em><abbr title='A Python enum type that supports combination using bitwise flags.'>enum flag</abbr></em></small> <a title="CacheComponents -- Flags to control the cache components." href="#hikari.api.config.CacheComponents"
+>CacheComponents</a></h4>
+</dt>
+<dd>
+<pre><code id="hikari.api.config.CacheComponents" class="hljs python"><abbr title='A standard Python type.'>class</abbr> CacheComponents (
+    value: <a href='https://docs.python.org/3/library/functions.html#int'>int</a> = 0,
+): ...</code></pre>
+<p>Flags to control the cache components.</p>
+<div class="sep"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+<br />
+<a href="https://github.com/hikari-py/hikari/blob/e8d7692c5e2e8453c8f18dea9e819a807d5f9d5f/hikari/api/config.py#L37-L89" class="git-link dotted">Browse git</a>
+</summary>
+<pre><code class="python">class CacheComponents(enums.Flag):
+    &#34;&#34;&#34;Flags to control the cache components.&#34;&#34;&#34;
+
+    NONE = 0
+    &#34;&#34;&#34;Disables the cache.&#34;&#34;&#34;
+
+    GUILDS = 1 &lt;&lt; 0
+    &#34;&#34;&#34;Enables the guild cache.&#34;&#34;&#34;
+
+    GUILD_CHANNELS = 1 &lt;&lt; 1
+    &#34;&#34;&#34;Enables the guild channels cache.&#34;&#34;&#34;
+
+    MEMBERS = 1 &lt;&lt; 2
+    &#34;&#34;&#34;Enables the members cache.&#34;&#34;&#34;
+
+    ROLES = 1 &lt;&lt; 3
+    &#34;&#34;&#34;Enables the roles cache.&#34;&#34;&#34;
+
+    INVITES = 1 &lt;&lt; 4
+    &#34;&#34;&#34;Enables the invites cache.&#34;&#34;&#34;
+
+    EMOJIS = 1 &lt;&lt; 5
+    &#34;&#34;&#34;Enables the emojis cache.&#34;&#34;&#34;
+
+    PRESENCES = 1 &lt;&lt; 6
+    &#34;&#34;&#34;Enables the presences cache.&#34;&#34;&#34;
+
+    VOICE_STATES = 1 &lt;&lt; 7
+    &#34;&#34;&#34;Enables the voice states cache.&#34;&#34;&#34;
+
+    MESSAGES = 1 &lt;&lt; 8
+    &#34;&#34;&#34;Enables the messages cache.&#34;&#34;&#34;
+
+    ME = 1 &lt;&lt; 9
+    &#34;&#34;&#34;Enables the me cache.&#34;&#34;&#34;
+
+    DM_CHANNEL_IDS = 1 &lt;&lt; 10
+    &#34;&#34;&#34;Enables the DM channel IDs cache.&#34;&#34;&#34;
+
+    ALL = (
+        GUILDS
+        | GUILD_CHANNELS
+        | MEMBERS
+        | ROLES
+        | INVITES
+        | EMOJIS
+        | PRESENCES
+        | VOICE_STATES
+        | MESSAGES
+        | ME
+        | DM_CHANNEL_IDS
+    )
+    &#34;&#34;&#34;Fully enables the cache.&#34;&#34;&#34;</code></pre>
+</details>
+<div class="sep"></div>
+<h5>Method resolution order</h5>
+<dl>
+<dt class="nested"><small class='text-muted'><em><abbr title='A Python enum type that supports combination using bitwise flags.'>enum flag</abbr></em></small> <a title="CacheComponents -- Flags to control the cache components." href="#hikari.api.config.CacheComponents"
+>CacheComponents</a></dt>
+<dd class="nested"><em class="text-muted">That's this class!</em></dd>
+<dt class="nested"><small class='text-muted'><em><abbr title='Anything that is external to this library.'>extern</abbr> class</em></small> <a title="builtins.int -- int([x]) -> integer
+int(x, base=10) -> integer …" href="https://docs.python.org/3/library/functions.html#int"
+>int</a></dt>
+<dd class="nested"><p>int([x]) -&gt; integer
+int(x, base=10) -&gt; integer …</p></dd>
+<dt class="nested"><small class='text-muted'><em><abbr title='A Python enum type that supports combination using bitwise flags.'>enum flag</abbr></em></small> <a title="Flag -- Clone of Python's `enum.Flag` implementation …" href="../internal/enums.html#hikari.internal.enums.Flag"
+>Flag</a></dt>
+<dd class="nested"><p>Clone of Python's <code><a href='https://docs.python.org/3/library/enum.html#enum.Flag'>enum.Flag</a></code> implementation …</p></dd>
+</dl>
+<div class="sep"></div>
+<h5>Variables and properties</h5>
+<dl>
+<div id="hikari.api.config.CacheComponents.name" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="name -- Return the name of the flag combination as a `builtins.str`." href="../internal/enums.html#hikari.internal.enums.Flag.name"  >name</a> : <a href='https://docs.python.org/3/library/stdtypes.html#str'>str</a></code></pre>
+</dt>
+<dd><p>Return the name of the flag combination as a <code><a href='https://docs.python.org/3/library/stdtypes.html#str'>str</a></code>.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.value" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="value -- Return the `builtins.int` value of the flag." href="../internal/enums.html#hikari.internal.enums.Flag.value"  >value</a> : <a href='https://docs.python.org/3/library/functions.html#int'>int</a></code></pre>
+</dt>
+<dd><p>Return the <code><a href='https://docs.python.org/3/library/functions.html#int'>int</a></code> value of the flag.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.ALL" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="ALL -- Fully enables the cache." href="#hikari.api.config.CacheComponents.ALL"  >ALL</a> = 2047</code></pre>
+</dt>
+<dd><p>Fully enables the cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.DM_CHANNEL_IDS" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="DM_CHANNEL_IDS -- Enables the DM channel IDs cache." href="#hikari.api.config.CacheComponents.DM_CHANNEL_IDS"  >DM_CHANNEL_IDS</a> = 1024</code></pre>
+</dt>
+<dd><p>Enables the DM channel IDs cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.EMOJIS" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="EMOJIS -- Enables the emojis cache." href="#hikari.api.config.CacheComponents.EMOJIS"  >EMOJIS</a> = 32</code></pre>
+</dt>
+<dd><p>Enables the emojis cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.GUILDS" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="GUILDS -- Enables the guild cache." href="#hikari.api.config.CacheComponents.GUILDS"  >GUILDS</a> = 1</code></pre>
+</dt>
+<dd><p>Enables the guild cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.GUILD_CHANNELS" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="GUILD_CHANNELS -- Enables the guild channels cache." href="#hikari.api.config.CacheComponents.GUILD_CHANNELS"  >GUILD_CHANNELS</a> = 2</code></pre>
+</dt>
+<dd><p>Enables the guild channels cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.INVITES" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="INVITES -- Enables the invites cache." href="#hikari.api.config.CacheComponents.INVITES"  >INVITES</a> = 16</code></pre>
+</dt>
+<dd><p>Enables the invites cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.ME" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="ME -- Enables the me cache." href="#hikari.api.config.CacheComponents.ME"  >ME</a> = 512</code></pre>
+</dt>
+<dd><p>Enables the me cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.MEMBERS" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="MEMBERS -- Enables the members cache." href="#hikari.api.config.CacheComponents.MEMBERS"  >MEMBERS</a> = 4</code></pre>
+</dt>
+<dd><p>Enables the members cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.MESSAGES" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="MESSAGES -- Enables the messages cache." href="#hikari.api.config.CacheComponents.MESSAGES"  >MESSAGES</a> = 256</code></pre>
+</dt>
+<dd><p>Enables the messages cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.NONE" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="NONE -- Disables the cache." href="#hikari.api.config.CacheComponents.NONE"  >NONE</a> = 0</code></pre>
+</dt>
+<dd><p>Disables the cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.PRESENCES" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="PRESENCES -- Enables the presences cache." href="#hikari.api.config.CacheComponents.PRESENCES"  >PRESENCES</a> = 64</code></pre>
+</dt>
+<dd><p>Enables the presences cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.ROLES" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="ROLES -- Enables the roles cache." href="#hikari.api.config.CacheComponents.ROLES"  >ROLES</a> = 8</code></pre>
+</dt>
+<dd><p>Enables the roles cache.</p></dd>
+</div>
+<div id="hikari.api.config.CacheComponents.VOICE_STATES" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='A variable that should be considered to be a constant value.'>const</abbr></em></small> <a title="VOICE_STATES -- Enables the voice states cache." href="#hikari.api.config.CacheComponents.VOICE_STATES"  >VOICE_STATES</a> = 128</code></pre>
+</dt>
+<dd><p>Enables the voice states cache.</p></dd>
+</div>
+</dl>
+<div class="sep"></div>
+<h5>Methods</h5>
+<dl>
+<div id="hikari.api.config.CacheComponents.all" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="all" href="../internal/enums.html#hikari.internal.enums.Flag.all" id="hikari.api.config.CacheComponents.all">all</a>(
+    self: _T,
+    *flags: _T,
+) -> <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a>: ...</code></pre>
+</dt>
+<dd>
+<p>Check if all of the given flags are part of this value …</p>
+<strong>This function is defined explicitly at <a title="all -- Check if all of the given flags are part of this value …" href="../internal/enums.html#hikari.internal.enums.Flag.all"
+>hikari.internal.enums.Flag.all</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.any" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="any" href="../internal/enums.html#hikari.internal.enums.Flag.any" id="hikari.api.config.CacheComponents.any">any</a>(
+    self: _T,
+    *flags: _T,
+) -> <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a>: ...</code></pre>
+</dt>
+<dd>
+<p>Check if any of the given flags are part of this value …</p>
+<strong>This function is defined explicitly at <a title="any -- Check if any of the given flags are part of this value …" href="../internal/enums.html#hikari.internal.enums.Flag.any"
+>hikari.internal.enums.Flag.any</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.difference" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="difference" href="../internal/enums.html#hikari.internal.enums.Flag.difference" id="hikari.api.config.CacheComponents.difference">difference</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> ~_T: ...</code></pre>
+</dt>
+<dd>
+<p>Perform a set difference with the other set …</p>
+<strong>This function is defined explicitly at <a title="difference -- Perform a set difference with the other set …" href="../internal/enums.html#hikari.internal.enums.Flag.difference"
+>hikari.internal.enums.Flag.difference</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.intersection" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="intersection" href="../internal/enums.html#hikari.internal.enums.Flag.intersection" id="hikari.api.config.CacheComponents.intersection">intersection</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> ~_T: ...</code></pre>
+</dt>
+<dd>
+<p>Return a combination of flags that are set for both given values …</p>
+<strong>This function is defined explicitly at <a title="intersection -- Return a combination of flags that are set for both given values …" href="../internal/enums.html#hikari.internal.enums.Flag.intersection"
+>hikari.internal.enums.Flag.intersection</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.invert" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="invert" href="../internal/enums.html#hikari.internal.enums.Flag.invert" id="hikari.api.config.CacheComponents.invert">invert</a>(
+    self: _T,
+) -> ~_T: ...</code></pre>
+</dt>
+<dd>
+<p>Return a set of all flags not in the current set.</p>
+<strong>This function is defined explicitly at <a title="invert -- Return a set of all flags not in the current set." href="../internal/enums.html#hikari.internal.enums.Flag.invert"
+>hikari.internal.enums.Flag.invert</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.is_disjoint" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="is_disjoint" href="../internal/enums.html#hikari.internal.enums.Flag.is_disjoint" id="hikari.api.config.CacheComponents.is_disjoint">is_disjoint</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a>: ...</code></pre>
+</dt>
+<dd>
+<p>Return whether two sets have a intersection or not …</p>
+<strong>This function is defined explicitly at <a title="is_disjoint -- Return whether two sets have a intersection or not …" href="../internal/enums.html#hikari.internal.enums.Flag.is_disjoint"
+>hikari.internal.enums.Flag.is_disjoint</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.is_subset" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="is_subset" href="../internal/enums.html#hikari.internal.enums.Flag.is_subset" id="hikari.api.config.CacheComponents.is_subset">is_subset</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a>: ...</code></pre>
+</dt>
+<dd>
+<p>Return whether another set contains this set or not …</p>
+<strong>This function is defined explicitly at <a title="is_subset -- Return whether another set contains this set or not …" href="../internal/enums.html#hikari.internal.enums.Flag.is_subset"
+>hikari.internal.enums.Flag.is_subset</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.is_superset" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="is_superset" href="../internal/enums.html#hikari.internal.enums.Flag.is_superset" id="hikari.api.config.CacheComponents.is_superset">is_superset</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a>: ...</code></pre>
+</dt>
+<dd>
+<p>Return whether this set contains another set or not.</p>
+<strong>This function is defined explicitly at <a title="is_superset -- Return whether this set contains another set or not." href="../internal/enums.html#hikari.internal.enums.Flag.is_superset"
+>hikari.internal.enums.Flag.is_superset</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.isdisjoint" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="isdisjoint" href="../internal/enums.html#hikari.internal.enums.Flag.is_disjoint" id="hikari.api.config.CacheComponents.isdisjoint">isdisjoint</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a>: ...</code></pre>
+</dt>
+<dd>
+<p>Return whether two sets have a intersection or not …</p>
+<strong>This function is defined explicitly at <a title="is_disjoint -- Return whether two sets have a intersection or not …" href="../internal/enums.html#hikari.internal.enums.Flag.is_disjoint"
+>hikari.internal.enums.Flag.is_disjoint</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.issubset" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="issubset" href="../internal/enums.html#hikari.internal.enums.Flag.is_subset" id="hikari.api.config.CacheComponents.issubset">issubset</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a>: ...</code></pre>
+</dt>
+<dd>
+<p>Return whether another set contains this set or not …</p>
+<strong>This function is defined explicitly at <a title="is_subset -- Return whether another set contains this set or not …" href="../internal/enums.html#hikari.internal.enums.Flag.is_subset"
+>hikari.internal.enums.Flag.is_subset</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.issuperset" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="issuperset" href="../internal/enums.html#hikari.internal.enums.Flag.is_superset" id="hikari.api.config.CacheComponents.issuperset">issuperset</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a>: ...</code></pre>
+</dt>
+<dd>
+<p>Return whether this set contains another set or not.</p>
+<strong>This function is defined explicitly at <a title="is_superset -- Return whether this set contains another set or not." href="../internal/enums.html#hikari.internal.enums.Flag.is_superset"
+>hikari.internal.enums.Flag.is_superset</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.none" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="none" href="../internal/enums.html#hikari.internal.enums.Flag.none" id="hikari.api.config.CacheComponents.none">none</a>(
+    self: _T,
+    *flags: _T,
+) -> <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a>: ...</code></pre>
+</dt>
+<dd>
+<p>Check if none of the given flags are part of this value …</p>
+<strong>This function is defined explicitly at <a title="none -- Check if none of the given flags are part of this value …" href="../internal/enums.html#hikari.internal.enums.Flag.none"
+>hikari.internal.enums.Flag.none</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.split" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="split" href="../internal/enums.html#hikari.internal.enums.Flag.split" id="hikari.api.config.CacheComponents.split">split</a>(
+    self: _T,
+) -> Sequence[~_T]: ...</code></pre>
+</dt>
+<dd>
+<p>Return a list of all defined atomic values for this flag …</p>
+<strong>This function is defined explicitly at <a title="split -- Return a list of all defined atomic values for this flag …" href="../internal/enums.html#hikari.internal.enums.Flag.split"
+>hikari.internal.enums.Flag.split</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.symmetric_difference" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="symmetric_difference" href="../internal/enums.html#hikari.internal.enums.Flag.symmetric_difference" id="hikari.api.config.CacheComponents.symmetric_difference">symmetric_difference</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> ~_T: ...</code></pre>
+</dt>
+<dd>
+<p>Return a set with the symmetric differences of two flag sets …</p>
+<strong>This function is defined explicitly at <a title="symmetric_difference -- Return a set with the symmetric differences of two flag sets …" href="../internal/enums.html#hikari.internal.enums.Flag.symmetric_difference"
+>hikari.internal.enums.Flag.symmetric_difference</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.symmetricdifference" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="symmetricdifference" href="../internal/enums.html#hikari.internal.enums.Flag.symmetric_difference" id="hikari.api.config.CacheComponents.symmetricdifference">symmetricdifference</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> ~_T: ...</code></pre>
+</dt>
+<dd>
+<p>Return a set with the symmetric differences of two flag sets …</p>
+<strong>This function is defined explicitly at <a title="symmetric_difference -- Return a set with the symmetric differences of two flag sets …" href="../internal/enums.html#hikari.internal.enums.Flag.symmetric_difference"
+>hikari.internal.enums.Flag.symmetric_difference</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+<div id="hikari.api.config.CacheComponents.union" class="anchor">
+<dt>
+<pre><code class="hljs python"><abbr title='A standard Python function.'>def</abbr> <a title="union" href="../internal/enums.html#hikari.internal.enums.Flag.union" id="hikari.api.config.CacheComponents.union">union</a>(
+    self: _T,
+    other: <a href='https://docs.python.org/3/library/typing.html#typing.Union'>Union</a>[_T, <a href='https://docs.python.org/3/library/functions.html#int'>int</a>],
+) -> ~_T: ...</code></pre>
+</dt>
+<dd>
+<p>Return a combination of all flags in this set and the other set …</p>
+<strong>This function is defined explicitly at <a title="union -- Return a combination of all flags in this set and the other set …" href="../internal/enums.html#hikari.internal.enums.Flag.union"
+>hikari.internal.enums.Flag.union</a>. Visit that link to view the full documentation!</strong>
+</dd>
+</div>
+<div class="sep"></div>
+</dl>
+<div class="sep"></div>
+</dd>
+</div>
+<div id="hikari.api.config.CacheSettings" class="anchor">
+<dt>
+<h4><small class='text-muted'><em><abbr title='A standard Python type.'>class</abbr></em></small> <a title="CacheSettings -- Settings to control the cache." href="#hikari.api.config.CacheSettings"
+>CacheSettings</a></h4>
+</dt>
+<dd>
+<pre><code id="hikari.api.config.CacheSettings" class="hljs python"><abbr title='A standard Python type.'>class</abbr> CacheSettings: ...</code></pre>
+<p>Settings to control the cache.</p>
+<div class="sep"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+<br />
+<a href="https://github.com/hikari-py/hikari/blob/e8d7692c5e2e8453c8f18dea9e819a807d5f9d5f/hikari/api/config.py#L185-L193" class="git-link dotted">Browse git</a>
+</summary>
+<pre><code class="python">class CacheSettings(abc.ABC):
+    &#34;&#34;&#34;Settings to control the cache.&#34;&#34;&#34;
+
+    __slots__: typing.Sequence[str] = ()
+
+    @property
+    @abc.abstractmethod
+    def components(self) -&gt; CacheComponents:
+        &#34;&#34;&#34;Cache components to use.&#34;&#34;&#34;</code></pre>
+</details>
+<div class="sep"></div>
+<h5>Subclasses</h5>
+<dl>
+<dt class="nested"><small class='text-muted'><em><abbr title='A standard Python type that represents some form of information or entity.'>dataclass</abbr></em></small> <a title="CacheSettings -- Settings to control the cache …" href="../impl/config.html#hikari.impl.config.CacheSettings"
+>CacheSettings</a></dt>
+<dd class="nested"><p>Settings to control the cache …</p></dd>
+</dl>
+<div class="sep"></div>
+<h5>Method resolution order</h5>
+<dl>
+<dt class="nested"><small class='text-muted'><em><abbr title='An abstract base class which may have abstract methods and abstract properties.'>abstract</abbr> <abbr title='A standard Python type.'>class</abbr></em></small> <a title="CacheSettings -- Settings to control the cache." href="#hikari.api.config.CacheSettings"
+>CacheSettings</a></dt>
+<dd class="nested"><em class="text-muted">That's this class!</em></dd>
+<dt class="nested"><small class='text-muted'><em><abbr title='Anything that is external to this library.'>extern</abbr> class</em></small> <a title="abc.ABC -- Helper class that provides a standard way to create an ABC using
+inheritance." href="https://docs.python.org/3/library/abc.html#abc.ABC"
+>abc.ABC</a></dt>
+<dd class="nested"><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p></dd>
+</dl>
+<div class="sep"></div>
+<h5>Variables and properties</h5>
+<dl>
+<div id="hikari.api.config.CacheSettings.components" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='An abstract method or property that must be overridden in a derived class.'>abstract</abbr> <abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="components -- Cache components to use." href="#hikari.api.config.CacheSettings.components"  >components</a> : <a href='#hikari.api.config.CacheComponents'>CacheComponents</a></code></pre>
+</dt>
+<dd><p>Cache components to use.</p></dd>
+</div>
+</dl>
+<div class="sep"></div>
+</dd>
+</div>
+<div id="hikari.api.config.HTTPSettings" class="anchor">
+<dt>
+<h4><small class='text-muted'><em><abbr title='A standard Python type.'>class</abbr></em></small> <a title="HTTPSettings -- Settings to control HTTP clients." href="#hikari.api.config.HTTPSettings"
+>HTTPSettings</a></h4>
+</dt>
+<dd>
+<pre><code id="hikari.api.config.HTTPSettings" class="hljs python"><abbr title='A standard Python type.'>class</abbr> HTTPSettings: ...</code></pre>
+<p>Settings to control HTTP clients.</p>
+<div class="sep"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+<br />
+<a href="https://github.com/hikari-py/hikari/blob/e8d7692c5e2e8453c8f18dea9e819a807d5f9d5f/hikari/api/config.py#L122-L182" class="git-link dotted">Browse git</a>
+</summary>
+<pre><code class="python">class HTTPSettings(abc.ABC):
+    &#34;&#34;&#34;Settings to control HTTP clients.&#34;&#34;&#34;
+
+    __slots__: typing.Sequence[str] = ()
+
+    @property
+    @abc.abstractmethod
+    def max_redirects(self) -&gt; typing.Optional[int]:
+        &#34;&#34;&#34;Behavior for handling redirect HTTP responses.
+
+        If a `builtins.int`, allow following redirects from `3xx` HTTP responses
+        for up to this many redirects. Exceeding this value will raise an
+        exception.
+
+        If `builtins.None`, then disallow any redirects.
+
+        The default is to disallow this behavior for security reasons.
+
+        Generally, it is safer to keep this disabled. You may find a case in the
+        future where you need to enable this if Discord change their URL without
+        warning.
+
+        !!! note
+            This will only apply to the REST API. WebSockets remain unaffected
+            by any value set here.
+        &#34;&#34;&#34;
+
+    @property
+    @abc.abstractmethod
+    def ssl(self) -&gt; ssl_.SSLContext:
+        &#34;&#34;&#34;SSL context to use.
+
+        This may be __assigned__ a `builtins.bool` or an `ssl.SSLContext` object.
+
+        If assigned to `builtins.True`, a default SSL context is generated by
+        this class that will enforce SSL verification. This is then stored in
+        this field.
+
+        If `builtins.False`, then a default SSL context is generated by this
+        class that will **NOT** enforce SSL verification. This is then stored
+        in this field.
+
+        If an instance of `ssl.SSLContext`, then this context will be used.
+
+        !!! warning
+            Setting a custom value here may have security implications, or
+            may result in the application being unable to connect to Discord
+            at all.
+
+        !!! warning
+            Disabling SSL verification is almost always unadvised. This
+            is because your application will no longer check whether you are
+            connecting to Discord, or to some third party spoof designed
+            to steal personal credentials such as your application token.
+
+            There may be cases where SSL certificates do not get updated,
+            and in this case, you may find that disabling this explicitly
+            allows you to work around any issues that are occurring, but
+            you should immediately seek a better solution where possible
+            if any form of personal security is in your interest.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<div class="sep"></div>
+<h5>Subclasses</h5>
+<dl>
+<dt class="nested"><small class='text-muted'><em><abbr title='A standard Python type that represents some form of information or entity.'>dataclass</abbr></em></small> <a title="HTTPSettings -- Settings to control HTTP clients …" href="../impl/config.html#hikari.impl.config.HTTPSettings"
+>HTTPSettings</a></dt>
+<dd class="nested"><p>Settings to control HTTP clients …</p></dd>
+</dl>
+<div class="sep"></div>
+<h5>Method resolution order</h5>
+<dl>
+<dt class="nested"><small class='text-muted'><em><abbr title='An abstract base class which may have abstract methods and abstract properties.'>abstract</abbr> <abbr title='A standard Python type.'>class</abbr></em></small> <a title="HTTPSettings -- Settings to control HTTP clients." href="#hikari.api.config.HTTPSettings"
+>HTTPSettings</a></dt>
+<dd class="nested"><em class="text-muted">That's this class!</em></dd>
+<dt class="nested"><small class='text-muted'><em><abbr title='Anything that is external to this library.'>extern</abbr> class</em></small> <a title="abc.ABC -- Helper class that provides a standard way to create an ABC using
+inheritance." href="https://docs.python.org/3/library/abc.html#abc.ABC"
+>abc.ABC</a></dt>
+<dd class="nested"><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p></dd>
+</dl>
+<div class="sep"></div>
+<h5>Variables and properties</h5>
+<dl>
+<div id="hikari.api.config.HTTPSettings.max_redirects" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='An abstract method or property that must be overridden in a derived class.'>abstract</abbr> <abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="max_redirects -- Behavior for handling redirect HTTP responses …" href="#hikari.api.config.HTTPSettings.max_redirects"  >max_redirects</a> : Optional[<a href='https://docs.python.org/3/library/functions.html#int'>int</a>]</code></pre>
+</dt>
+<dd><p>Behavior for handling redirect HTTP responses.</p>
+<p>If a <code><a href='https://docs.python.org/3/library/functions.html#int'>int</a></code>, allow following redirects from <code>3xx</code> HTTP responses
+for up to this many redirects. Exceeding this value will raise an
+exception.</p>
+<p>If <code><a href='https://docs.python.org/3/library/constants.html#None'>None</a></code>, then disallow any redirects.</p>
+<p>The default is to disallow this behavior for security reasons.</p>
+<p>Generally, it is safer to keep this disabled. You may find a case in the
+future where you need to enable this if Discord change their URL without
+warning.</p>
+<div class="alert alert-success">
+<p class="admonition-title">Note</p>
+<p>This will only apply to the REST API. WebSockets remain unaffected
+by any value set here.</p>
+</div></dd>
+</div>
+<div id="hikari.api.config.HTTPSettings.ssl" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='An abstract method or property that must be overridden in a derived class.'>abstract</abbr> <abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="ssl -- SSL context to use …" href="#hikari.api.config.HTTPSettings.ssl"  >ssl</a> : <a href='https://docs.python.org/3/library/ssl.html#ssl.SSLContext'>ssl_.SSLContext</a></code></pre>
+</dt>
+<dd><p>SSL context to use.</p>
+<p>This may be <strong>assigned</strong> a <code><a href='https://docs.python.org/3/library/functions.html#bool'>bool</a></code> or an <code><a href='https://docs.python.org/3/library/ssl.html#ssl.SSLContext'>ssl.SSLContext</a></code> object.</p>
+<p>If assigned to <code><a href='https://docs.python.org/3/library/constants.html#True'>True</a></code>, a default SSL context is generated by
+this class that will enforce SSL verification. This is then stored in
+this field.</p>
+<p>If <code><a href='https://docs.python.org/3/library/constants.html#False'>False</a></code>, then a default SSL context is generated by this
+class that will <strong>NOT</strong> enforce SSL verification. This is then stored
+in this field.</p>
+<p>If an instance of <code><a href='https://docs.python.org/3/library/ssl.html#ssl.SSLContext'>ssl.SSLContext</a></code>, then this context will be used.</p>
+<div class="alert alert-warning">
+<p class="admonition-title">Warning</p>
+<p>Setting a custom value here may have security implications, or
+may result in the application being unable to connect to Discord
+at all.</p>
+</div>
+<div class="alert alert-warning">
+<p class="admonition-title">Warning</p>
+<p>Disabling SSL verification is almost always unadvised. This
+is because your application will no longer check whether you are
+connecting to Discord, or to some third party spoof designed
+to steal personal credentials such as your application token.</p>
+<p>There may be cases where SSL certificates do not get updated,
+and in this case, you may find that disabling this explicitly
+allows you to work around any issues that are occurring, but
+you should immediately seek a better solution where possible
+if any form of personal security is in your interest.</p>
+</div></dd>
+</div>
+</dl>
+<div class="sep"></div>
+</dd>
+</div>
+<div id="hikari.api.config.ProxySettings" class="anchor">
+<dt>
+<h4><small class='text-muted'><em><abbr title='A standard Python type.'>class</abbr></em></small> <a title="ProxySettings -- Settings for configuring an HTTP-based proxy." href="#hikari.api.config.ProxySettings"
+>ProxySettings</a></h4>
+</dt>
+<dd>
+<pre><code id="hikari.api.config.ProxySettings" class="hljs python"><abbr title='A standard Python type.'>class</abbr> ProxySettings: ...</code></pre>
+<p>Settings for configuring an HTTP-based proxy.</p>
+<div class="sep"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+<br />
+<a href="https://github.com/hikari-py/hikari/blob/e8d7692c5e2e8453c8f18dea9e819a807d5f9d5f/hikari/api/config.py#L92-L119" class="git-link dotted">Browse git</a>
+</summary>
+<pre><code class="python">class ProxySettings(abc.ABC):
+    &#34;&#34;&#34;Settings for configuring an HTTP-based proxy.&#34;&#34;&#34;
+
+    __slots__: typing.Sequence[str] = ()
+
+    @property
+    @abc.abstractmethod
+    def url(self) -&gt; typing.Union[None, str]:
+        &#34;&#34;&#34;Proxy URL to use.
+
+        If this is `builtins.None` then no explicit proxy is being used.
+        &#34;&#34;&#34;
+
+    @property
+    @abc.abstractmethod
+    def trust_env(self) -&gt; bool:
+        &#34;&#34;&#34;Toggle whether to look for a `netrc` file or environment variables.
+
+        If `builtins.True`, and no `url` is given on this object, then
+        `HTTP_PROXY` and `HTTPS_PROXY` will be used from the environment
+        variables, or a `netrc` file may be read to determine credentials.
+
+        If `builtins.False`, then this information is instead ignored.
+
+        !!! note
+            For more details of using `netrc`, visit:
+            https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html
+        &#34;&#34;&#34;</code></pre>
+</details>
+<div class="sep"></div>
+<h5>Subclasses</h5>
+<dl>
+<dt class="nested"><small class='text-muted'><em><abbr title='A standard Python type that represents some form of information or entity.'>dataclass</abbr></em></small> <a title="ProxySettings -- Settings for configuring an HTTP-based proxy …" href="../impl/config.html#hikari.impl.config.ProxySettings"
+>ProxySettings</a></dt>
+<dd class="nested"><p>Settings for configuring an HTTP-based proxy …</p></dd>
+</dl>
+<div class="sep"></div>
+<h5>Method resolution order</h5>
+<dl>
+<dt class="nested"><small class='text-muted'><em><abbr title='An abstract base class which may have abstract methods and abstract properties.'>abstract</abbr> <abbr title='A standard Python type.'>class</abbr></em></small> <a title="ProxySettings -- Settings for configuring an HTTP-based proxy." href="#hikari.api.config.ProxySettings"
+>ProxySettings</a></dt>
+<dd class="nested"><em class="text-muted">That's this class!</em></dd>
+<dt class="nested"><small class='text-muted'><em><abbr title='Anything that is external to this library.'>extern</abbr> class</em></small> <a title="abc.ABC -- Helper class that provides a standard way to create an ABC using
+inheritance." href="https://docs.python.org/3/library/abc.html#abc.ABC"
+>abc.ABC</a></dt>
+<dd class="nested"><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p></dd>
+</dl>
+<div class="sep"></div>
+<h5>Variables and properties</h5>
+<dl>
+<div id="hikari.api.config.ProxySettings.trust_env" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='An abstract method or property that must be overridden in a derived class.'>abstract</abbr> <abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="trust_env -- Toggle whether to look for a `netrc` file or environment variables …" href="#hikari.api.config.ProxySettings.trust_env"  >trust_env</a> : <a href='https://docs.python.org/3/library/functions.html#bool'>bool</a></code></pre>
+</dt>
+<dd><p>Toggle whether to look for a <code><a href='https://docs.python.org/3/library/netrc.html#module-netrc'>netrc</a></code> file or environment variables.</p>
+<p>If <code><a href='https://docs.python.org/3/library/constants.html#True'>True</a></code>, and no <code>url</code> is given on this object, then
+<code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> will be used from the environment
+variables, or a <code><a href='https://docs.python.org/3/library/netrc.html#module-netrc'>netrc</a></code> file may be read to determine credentials.</p>
+<p>If <code><a href='https://docs.python.org/3/library/constants.html#False'>False</a></code>, then this information is instead ignored.</p>
+<div class="alert alert-success">
+<p class="admonition-title">Note</p>
+<p>For more details of using <code><a href='https://docs.python.org/3/library/netrc.html#module-netrc'>netrc</a></code>, visit:
+<a href="https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html">https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html</a></p>
+</div></dd>
+</div>
+<div id="hikari.api.config.ProxySettings.url" class="anchor">
+<dt>
+<pre><code class="python"><small class='text-muted'><em><abbr title='An abstract method or property that must be overridden in a derived class.'>abstract</abbr> <abbr title='A descriptor on an object that behaves like a synthetic attribute/variable.'>property</abbr></em></small> <a title="url -- Proxy URL to use …" href="#hikari.api.config.ProxySettings.url"  >url</a> : Optional[<a href='https://docs.python.org/3/library/constants.html#None'>None</a>]</code></pre>
+</dt>
+<dd><p>Proxy URL to use.</p>
+<p>If this is <code><a href='https://docs.python.org/3/library/constants.html#None'>None</a></code> then no explicit proxy is being used.</p></dd>
+</div>
+</dl>
+<div class="sep"></div>
+</dd>
+</div>
+</dl>
+</section>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
